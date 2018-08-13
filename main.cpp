@@ -25,22 +25,26 @@ double factor() {
         std::cin.unget();
         std::cin >> val;
     }
-    else throw std::runtime_error("Unexpected character");
+    else {
+        throw std::runtime_error("Unexpected character");
+    }
     return val;
 }
 
 double term() {
-    int ch;
     double val = factor();
-    ch = token();
+    char ch = token();
     if (ch == '*' || ch == '/') {
         double b = term();
-        if (ch == '*')
+        if (ch == '*') {
             val *= b;
-        else
+        } else {
             val /= b;
+        }
     }
-    else std::cin.unget();
+    else {
+        std::cin.unget();
+    }
     return val;
 }
 
@@ -49,12 +53,15 @@ double expression() {
     char ch = token();
     if (ch == '-' || ch=='+') {
         double b = expression();
-        if (ch == '+')
+        if (ch == '+') {
             val += b;
-        else
+        } else {
             val -= b;
+        }
     }
-    else std::cin.unget();
+    else {
+        std::cin.unget();
+    }
     return val;
 }
 
